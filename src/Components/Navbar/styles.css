@@ -1,0 +1,15 @@
+/* NAVBAR */
+.Navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #282c34;
+    color: white;
+    padding: 0 2rem;
+    height: 7vh;
+  }
+  
+  .Navbar h3 {
+    color: #918eba;
+  }
+  
