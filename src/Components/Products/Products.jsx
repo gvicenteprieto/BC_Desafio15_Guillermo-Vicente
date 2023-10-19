@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
-//import productsData from "../../data";
 import ProductsForm from "./ProductsForm";
 import ProductsList from "./ProductsList";
 
@@ -14,9 +13,6 @@ import {
 import { db } from "../../firebaseConexion";
 
 const Products = () => {
-  //ordenar alfabeticamente
-  //productsData.sort((a, b) => a.name.localeCompare(b.name));
-
   const [products, setProducts] = useState([]);
   const [updateProduct, setUpdateProduct] = useState(null);
   const [errorLoad, setErrorLoad] = useState(false);
@@ -39,7 +35,6 @@ const Products = () => {
   };
 
   useEffect(() => {
-    //setProducts(productsData);
     getProducts();
   }, []);
 
@@ -49,17 +44,12 @@ const Products = () => {
       setErrorLoad(true);
       return;
     }
-    //setProducts([...products, product]);
-    // setErrorLoad(false);
     addDoc(productsCollection, product);
     getProducts();
   };
 
   const deleteProduct = async (name) => {
     setErrorLoad(false);
-    // const deletedProduct = products.filter((product) => product.name !== name);
-    // setProducts(deletedProduct);
-
     const productsDataFirebase = await getDocs(productsCollection);
 
     const productDelete = productsDataFirebase.docs
@@ -77,9 +67,6 @@ const Products = () => {
   };
 
   const editProduct = async (name, product) => {
-    //const updatedProduct = products.map((p) => (p.name === name ? product : p));
-    // setProducts(updatedProduct);
-
     const productsDataFirebase = await getDocs(productsCollection);
 
     const updatedProductFirebase = productsDataFirebase.docs
