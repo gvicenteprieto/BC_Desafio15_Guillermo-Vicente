@@ -1,5 +1,5 @@
-import ProductsCard from "./ProductsCard";
-import ProductsTable from "./ProductsTable";
+import ProductsCard from "./ProductsView/ProductsCard";
+import ProductsTable from "./ProductsView/ProductsTable";
 
 import { useState } from "react";
 
@@ -77,10 +77,6 @@ const ProductsList = ({
                     </div>
                   </>
                 )}
-
-                {/* <div>
-                  <h3>Total de Productos registrados: {products.length}</h3>
-                </div> */}
               </>
             )}
           </div>

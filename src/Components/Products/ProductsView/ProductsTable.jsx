@@ -22,20 +22,3 @@ const ProductsTable = ({ products, deleteProduct, setUpdateProduct }) => {
 };
 
 export default ProductsTable;
-
-//css:
-
-// .ProductsTable {
-//   border-collapse: collapse;
-//   width: 100%;
-// }
-
-// .ProductsTable td,
-// .ProductsTable th {
-//   border: 1px solid #ddd;
-//   padding: 8px;
-// }
-
-// .ProductsTable tr:nth-child(even) {
-//   background-color: #f2f2f2;
-// }
