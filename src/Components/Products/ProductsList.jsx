@@ -1,5 +1,7 @@
-// import ProductsCard from "./ProductsCard";
+import ProductsCard from "./ProductsCard";
 import ProductsTable from "./ProductsTable";
+
+import { useState } from "react";
 
 const ProductsList = ({
   products,
@@ -7,6 +9,12 @@ const ProductsList = ({
   setUpdateProduct,
   loading,
 }) => {
+  const [listType, setListType] = useState("table");
+
+  const handleListType = (e) => {
+    setListType(e);
+  };
+
   return (
     <>
       <div>
@@ -19,24 +27,36 @@ const ProductsList = ({
             ) : (
               <>
                 <h3>Lista de Productos</h3>
-                {/* <div className="Products">
-                  {products.map((product) => (
-                    <ProductsCard
-                      key={product.name}
-                      product={product}
+
+                <div className="listType-buttons">
+                  <button value="table" onClick={() => handleListType("table")}>
+                    Vista Tabla
+                  </button>
+                  <button value="card" onClick={() => handleListType("card")}>
+                    Vista Tarjetas
+                  </button>
+                </div>
+
+                {listType === "table" ? (
+                  <div className="ProductsTable">
+                    <ProductsTable
+                      products={products}
                       deleteProduct={deleteProduct}
                       setUpdateProduct={setUpdateProduct}
                     />
-                  ))}
-                </div> */}
-
-                <div className="ProductsTable">
-                  <ProductsTable
-                    products={products}
-                    deleteProduct={deleteProduct}
-                    setUpdateProduct={setUpdateProduct}
-                  />
-                </div>
+                  </div>
+                ) : (
+                  <div className="ProductsCard">
+                    {products.map((product) => (
+                      <ProductsCard
+                        key={product.name}
+                        product={product}
+                        deleteProduct={deleteProduct}
+                        setUpdateProduct={setUpdateProduct}
+                      />
+                    ))}
+                  </div>
+                )}
 
                 <div>
                   <h3>Total de productos: {products.length}</h3>
