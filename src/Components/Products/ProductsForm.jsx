@@ -28,10 +28,14 @@ const ProductsForm = ({
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!name.trim() || !description.trim() || !price.trim()) {
+    const nameRegex = /^[a-zA-Z0-9 ]*$/;
+    const priceRegex = /^\d+(\.\d{1,2})?$/;
+    const descriptionRegex = /^[a-zA-Z0-9 ]*$/;
+
+    if (!nameRegex.test(name) || !descriptionRegex.test(description) || !priceRegex.test(price)) {
       setError(true);
       return;
-    }
+    } 
 
     const product = { name, description, price };
 

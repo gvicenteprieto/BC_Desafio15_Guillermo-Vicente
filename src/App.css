@@ -207,14 +207,13 @@
 .Main .ProductsTable tbody td {
   padding: 1rem;
   font-weight: bold;
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 
 .Main .ProductsTable tbody tr:nth-child(odd) {
   background-color: #bfbce0;
-  color: #fff;
   font-weight: bold;
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 
 
