@@ -46,7 +46,7 @@ const ProductsForm = ({
     } else {
       addProduct(product);
       setError(false);
-      setErrorLoad(false);
+      // setErrorLoad(false);
     }
     setTimeout(() => {
       setErrorLoad(false);
