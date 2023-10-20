@@ -1,58 +1,52 @@
-/* eslint-disable react/prop-types */
-import ProductsCard  from "./ProductsCard";
-// import ProductsTable from "./ProductsTable";
+// import ProductsCard from "./ProductsCard";
+import ProductsTable from "./ProductsTable";
 
-
-const ProductsList = ({ products, deleteProduct, setUpdateProduct }) => {
-
-
+const ProductsList = ({
+  products,
+  deleteProduct,
+  setUpdateProduct,
+  loading,
+}) => {
   return (
-    <div className="products-list">
-      {products.length === 0 ? (
-        <h3>No hay productos registrados</h3>
-      ) : (
-        <>
-        <h3>Productos</h3>
-        <div className="Products">
-          {products.map((product) => (
-            <ProductsCard
-              key={product.name}
-              product={product}
-              deleteProduct={deleteProduct}
-              setUpdateProduct={setUpdateProduct}
-            />
-          ))}
-        </div>
-        {/* <div className="ProductsTable">
- <table>
-          <thead>
-            <tr>
-              <th>Nombre</th>
-              <th>Descripcion</th>
-              <th>Precio</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            {products.map((product) => (
-              <ProductsTable
-                key={product.name}
-                product={product}
-                deleteProduct={deleteProduct}
-                setUpdateProduct={setUpdateProduct}
-              />
-            ))}
-          </tbody>
+    <>
+      <div>
+        {loading === false ? (
+          <h3>Cargando datos...</h3>
+        ) : (
+          <div className="products-list">
+            {loading === true && products.length === 0 ? (
+              <h3>No hay productos registrados</h3>
+            ) : (
+              <>
+                <h3>Lista de Productos</h3>
+                {/* <div className="Products">
+                  {products.map((product) => (
+                    <ProductsCard
+                      key={product.name}
+                      product={product}
+                      deleteProduct={deleteProduct}
+                      setUpdateProduct={setUpdateProduct}
+                    />
+                  ))}
+                </div> */}
 
+                <div className="ProductsTable">
+                  <ProductsTable
+                    products={products}
+                    deleteProduct={deleteProduct}
+                    setUpdateProduct={setUpdateProduct}
+                  />
+                </div>
 
-        </table> 
-        </div> */}
-        <div>
-          <h3>Total de productos: {products.length}</h3>
-        </div>
-        </>
-      )}
-    </div>
+                <div>
+                  <h3>Total de productos: {products.length}</h3>
+                </div>
+              </>
+            )}
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 

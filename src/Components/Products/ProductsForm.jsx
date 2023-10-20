@@ -1,6 +1,4 @@
-/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
-// import axios from "axios";
 const ProductsForm = ({
   addProduct,
   editProduct,
@@ -13,37 +11,6 @@ const ProductsForm = ({
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [error, setError] = useState(false);
-
-
-//  const [productsFormValues, setProductsFormValues] = useState([
-//     {name: "", description: "", price: ""}
-//  ]);
-
-//  const handleInputChange = (e) => {
-//     console.log(e.target.value);
-//     setProductsFormValues({
-//       ...productsFormValues,
-//       [e.target.name]: e.target.value,
-//     });
-
-//     console.log(productsFormValues);
-//   };
-
-
-// const datafirebase = async () => {
-//   const url = "https://crud-inventario-react-firebase-default-rtdb.firebaseio.com/";
-//   const res = await axios.get(url);
-//   const data = res.data;
-//   console.log(data);
-//   return data;
-// };
-
-// const data = datafirebase();
-// console.log(data);
-
-
-
-
 
 
   useEffect(() => {
@@ -72,22 +39,15 @@ const ProductsForm = ({
       editProduct(updateProduct.name, product);
       setError(false);
       setErrorLoad(false);
-      console.log("producto editado" + product);
     } else {
       addProduct(product);
       setError(false);
-      //setErrorLoad(false);
-      console.log("producto agregado" + product);
+      setErrorLoad(false);
     }
-   
-     //setErrorLoad(false);
-    // console.log("producto agregado" + product);
-    // setError(false);
-    localStorage.setItem("products", JSON.stringify(product));
     setTimeout(() => {
       setErrorLoad(false);
       handleReset(e);
-    }, 2000);
+    }, 1000);
 
   };
 
@@ -121,7 +81,6 @@ const ProductsForm = ({
         name="name"
         value={name}
         onChange={handleChange}
-        // onChange={handleInputChange}
         placeholder="Nombre del producto"
       />
       <label htmlFor="description">Descripción</label>

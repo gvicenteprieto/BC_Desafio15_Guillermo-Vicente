@@ -1,7 +1,6 @@
-/* eslint-disable react/prop-types */
 const ProductsCard = ({ product, deleteProduct, setUpdateProduct }) => {
   return (
-    <div className="Product" key={product.name}>
+    <div className="Product" >
       <h4>{product.name}</h4>
       <p>{product.description}</p>
       <p>$ {product.price}</p>

@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 import ProductsForm from "./ProductsForm";
 import ProductsList from "./ProductsList";
@@ -10,32 +9,39 @@ import {
   deleteDoc,
   updateDoc,
 } from "firebase/firestore";
+
 import { db } from "../../firebaseConexion";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [updateProduct, setUpdateProduct] = useState(null);
   const [errorLoad, setErrorLoad] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const productsCollection = collection(db, "products");
 
   const getProducts = async () => {
+    setLoading(false);
     const productsDataFirebase = await getDocs(productsCollection);
-    //sort products by name
+    //sort products
     if (productsDataFirebase) {
       productsDataFirebase.docs
         .map((doc) => ({ ...doc.data(), id: doc.id }))
         .sort((a, b) => a.name.localeCompare(b.name));
+
       setProducts(
         productsDataFirebase.docs
           .map((doc) => ({ ...doc.data(), id: doc.id }))
           .sort((a, b) => a.name.localeCompare(b.name))
       );
+      setLoading(true);
     }
   };
 
   useEffect(() => {
-    getProducts();
+    setTimeout(() => {
+      getProducts();
+    }, 1000);
   }, []);
 
   const addProduct = (product) => {
@@ -51,24 +57,21 @@ const Products = () => {
   const deleteProduct = async (name) => {
     setErrorLoad(false);
     const productsDataFirebase = await getDocs(productsCollection);
-
     const productDelete = productsDataFirebase.docs
       .map((doc) => ({ name: doc.data().name }))
       .filter((doc) => doc.name === name);
-    //buscar en la collection el producto con el nombre que coincida con el que se quiere borrar
+
     const querySnapshot = await getDocs(productsCollection);
     querySnapshot.forEach((doc) => {
       if (doc.data().name === productDelete[0].name) {
         deleteDoc(doc.ref);
       }
     });
-
     getProducts();
   };
 
   const editProduct = async (name, product) => {
     const productsDataFirebase = await getDocs(productsCollection);
-
     const updatedProductFirebase = productsDataFirebase.docs
       .map((doc) => ({ name: doc.data().name }))
       .filter((doc) => doc.name === name);
@@ -79,7 +82,6 @@ const Products = () => {
         updateDoc(doc.ref, product);
       }
     });
-
     getProducts();
   };
 
@@ -101,6 +103,8 @@ const Products = () => {
         deleteProduct={deleteProduct}
         editProduct={editProduct}
         setUpdateProduct={setUpdateProduct}
+        loading={loading}
+        setLoading={setLoading}
       />
     </main>
   );

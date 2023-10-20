@@ -1,31 +1,41 @@
-/* eslint-disable react/prop-types */
-const ProductsTable = ({ product, deleteProduct, setUpdateProduct }) => {
+import ProductsTableBody from "./ProductsTableBody";
+const ProductsTable = ({ products, deleteProduct, setUpdateProduct }) => {
   return (
-   <div className="ProductTable" key={product.name}>
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Precio</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ProductsTableBody
+          products={products}
+          deleteProduct={deleteProduct}
+          setUpdateProduct={setUpdateProduct}
+        />
+      </tbody>
+    </table>
+  );
+};
 
-            <tr>
-            <td>{product.name}</td>
-            <td>{product.description}</td>
-            <td>{product.price}</td>
-            <td>
-                <button
-                className="delete-button"
-                onClick={() => deleteProduct(product.name)}
-                >
-                Eliminar
-                </button>
-                <button
-                className="edit-button"
-                onClick={() => setUpdateProduct(product)}
-                >
-                Actualizar
-                </button>
-            </td>
-            </tr>
+export default ProductsTable;
 
+//css:
 
-    </div>
-  )
-}
+// .ProductsTable {
+//   border-collapse: collapse;
+//   width: 100%;
+// }
 
-export default ProductsTable
+// .ProductsTable td,
+// .ProductsTable th {
+//   border: 1px solid #ddd;
+//   padding: 8px;
+// }
+
+// .ProductsTable tr:nth-child(even) {
+//   background-color: #f2f2f2;
+// }
