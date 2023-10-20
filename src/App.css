@@ -107,6 +107,31 @@
   background-color: #3b59ba;
 }
 
+
+
+.Main .listType-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* MAIN List*/
+.Main .listType-buttons button {
+  margin-top: .5rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  background-color: #a53bba;
+  color: #fff;
+  font-size: .75rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* MAIN Cards*/
 .Main .Products {
   display: flex;
   justify-content: center;
@@ -176,30 +201,6 @@
   background-color: #2b8a2b;
 }
 
-.Main .listType-buttons {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  width: 100%;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-
-
-
-.Main .listType-buttons button {
-  margin-top: .5rem;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 0.25rem;
-  background-color: #a53bba;
-  color: #fff;
-  font-size: .75rem;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-
 .Main .ProductsCard {
   display: flex;
   justify-content: center;
@@ -207,6 +208,7 @@
   flex-wrap: wrap;
 }
 
+/* MAIN table*/
 .Main .ProductsTable table {
     border-collapse: collapse;
   width: 100%;
@@ -221,7 +223,6 @@
   background-color: #484850;
   color: #fff;
 }
-
 
 .Main .ProductsTable thead th {
   padding: 1rem;
@@ -248,7 +249,6 @@
   font-weight: bold;
   font-size: 1rem;
 }
-
 
 .Main .ProductsTable button {
   margin-top: .5rem;

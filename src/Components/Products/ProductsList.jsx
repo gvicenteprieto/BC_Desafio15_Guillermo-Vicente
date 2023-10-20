@@ -1,6 +1,5 @@
 import ProductsCard from "./ProductsView/ProductsCard";
 import ProductsTable from "./ProductsView/ProductsTable";
-
 import { useState } from "react";
 
 const ProductsList = ({

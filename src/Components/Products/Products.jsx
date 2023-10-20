@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import ProductsForm from "./ProductsForm";
 import ProductsList from "./ProductsList";
-
+import { db } from "../../firebaseConexion";
 import {
   collection,
   getDocs,
@@ -9,8 +9,6 @@ import {
   deleteDoc,
   updateDoc,
 } from "firebase/firestore";
-
-import { db } from "../../firebaseConexion";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
