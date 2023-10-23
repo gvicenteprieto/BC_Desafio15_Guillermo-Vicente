@@ -9,6 +9,8 @@ import {
   deleteDoc,
   updateDoc,
 } from "firebase/firestore";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -21,7 +23,6 @@ const Products = () => {
   const getProducts = async () => {
     setLoading(false);
     const productsDataFirebase = await getDocs(productsCollection);
-    //sort products
     if (productsDataFirebase) {
       productsDataFirebase.docs
         .map((doc) => ({ ...doc.data(), id: doc.id }))
@@ -46,9 +47,16 @@ const Products = () => {
     const existProduct = products.find((p) => p.name === product.name);
     if (existProduct) {
       setErrorLoad(true);
+      toast.error('El producto que intenta cargar ya existe!')
+      return;
+    }
+
+    if (product.name.trim() === "" || product.description.trim() === "" || product.price.trim() === "") {
+      toast.error('Todos los campos son obligatorios!')
       return;
     }
     addDoc(productsCollection, product);
+    toast.success('Producto agregado con éxito!')
     getProducts();
   };
 
@@ -65,6 +73,7 @@ const Products = () => {
         deleteDoc(doc.ref);
       }
     });
+    toast.success('Producto eliminado con éxito!')
     getProducts();
   };
 
@@ -80,6 +89,7 @@ const Products = () => {
         updateDoc(doc.ref, product);
       }
     });
+    toast.success('Producto actualizado con éxito!')
     getProducts();
   };
 
@@ -104,6 +114,7 @@ const Products = () => {
         loading={loading}
         setLoading={setLoading}
       />
+        <ToastContainer />
     </main>
   );
 };

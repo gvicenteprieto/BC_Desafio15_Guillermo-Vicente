@@ -13,7 +13,6 @@ const ProductsForm = ({
   const [price, setPrice] = useState("");
   const [error, setError] = useState(false);
 
-
   useEffect(() => {
     if (updateProduct) {
       setName(updateProduct.name);
@@ -29,15 +28,6 @@ const ProductsForm = ({
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const nameRegex = /^[a-zA-Z0-9 ]*$/;
-    const priceRegex = /^\d+(\.\d{1,2})?$/;
-    const descriptionRegex = /^[a-zA-Z0-9 ]*$/;
-
-    if (!nameRegex.test(name) || !descriptionRegex.test(description) || !priceRegex.test(price)) {
-      setError(true);
-      return;
-    } 
-
     const product = { name, description, price };
 
     if (updateProduct) {
@@ -47,13 +37,13 @@ const ProductsForm = ({
     } else {
       addProduct(product);
       setError(false);
-      // setErrorLoad(false);
+      setErrorLoad(false);
     }
     setTimeout(() => {
+      setError(false);
       setErrorLoad(false);
       handleReset(e);
     }, 1000);
-
   };
 
   const handleChange = (e) => {
@@ -116,12 +106,14 @@ const ProductsForm = ({
           </button>
         </div>
       ) : (
+        <>
         <button type="submit" className="add-button">
           Agregar Producto
         </button>
+       </>
       )}
-      {error && <p className="error">Todos los campos son obligatorios</p>}
-      {errorLoad && <p className="error">El Producto ya está registrado</p>}
+      {/* {error && <p className="error">Todos los campos son obligatorios</p>} */}
+      {/* {errorLoad && <p className="error">El Producto ya está registrado</p>} */}
     </form>
   );
 };
