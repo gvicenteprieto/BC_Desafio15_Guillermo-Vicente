@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
+import { useContext } from "react";
+import { ProductContext } from "../../Context/ProductContext";
 
-const ProductsForm = ({
-  addProduct,
-  editProduct,
-  updateProduct,
-  setUpdateProduct,
-  errorLoad,
-  setErrorLoad,
-}) => {
+const ProductsForm = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [error, setError] = useState(false);
+
+  const { addProduct,
+    editProduct,
+    updateProduct,
+    setUpdateProduct,
+    setErrorLoad } = useContext(ProductContext);
 
   useEffect(() => {
     if (updateProduct) {
@@ -32,16 +33,10 @@ const ProductsForm = ({
 
     if (updateProduct) {
       editProduct(updateProduct.name, product);
-      setError(false);
-      setErrorLoad(false);
     } else {
       addProduct(product);
-      setError(false);
-      setErrorLoad(false);
     }
     setTimeout(() => {
-      setError(false);
-      setErrorLoad(false);
       handleReset(e);
     }, 1000);
   };
@@ -112,8 +107,6 @@ const ProductsForm = ({
         </button>
        </>
       )}
-      {/* {error && <p className="error">Todos los campos son obligatorios</p>} */}
-      {/* {errorLoad && <p className="error">El Producto ya está registrado</p>} */}
     </form>
   );
 };

@@ -1,18 +1,17 @@
 import ProductsCard from "./ProductsView/ProductsCard";
 import ProductsTable from "./ProductsView/ProductsTable";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { ProductContext } from "../../Context/ProductContext";
 
-const ProductsList = ({
-  products,
-  deleteProduct,
-  setUpdateProduct,
-  loading,
-}) => {
+const ProductsList = () => {
+  const { products, deleteProduct, setUpdateProduct, loading } = useContext(ProductContext);
+  
   const [listType, setListType] = useState("");
 
   const handleListType = (e) => {
     setListType(e);
   };
+    
 
   return (
     <>
@@ -31,20 +30,21 @@ const ProductsList = ({
 
                 {
                   <>
-                  {
-                    listType === "" && <h3>Seleccione una vista</h3>
-                  }
-                  <div className="listType-buttons">
-                    <button
-                      value="table"
-                      onClick={() => handleListType("table")}
-                    >
-                      Vista Tabla
-                    </button>
-                    <button value="card" onClick={() => handleListType("card")}>
-                      Vista Tarjetas
-                    </button>
-                  </div>
+                    {listType === "" && <h3>Seleccione una vista</h3>}
+                    <div className="listType-buttons">
+                      <button
+                        value="table"
+                        onClick={() => handleListType("table")}
+                      >
+                        Vista Tabla
+                      </button>
+                      <button
+                        value="card"
+                        onClick={() => handleListType("card")}
+                      >
+                        Vista Tarjetas
+                      </button>
+                    </div>
                   </>
                 }
 
