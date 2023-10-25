@@ -1,19 +1,27 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 import { toast } from "react-toastify";
 
 export const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
-  
+
   const [cart, setCart] = useState([]);
 
+  useEffect(() => {
+    const cartStorage = localStorage.getItem("cart");
+    if (cartStorage) {
+      setCart(cartStorage ? JSON.parse(cartStorage) : []);
+    }
+  }, []);
+  
   const addToCart = (item) => {
-    // preparar campo stock en products en productsContext
+    // bonus: resolver stock de products en productsContext
     item.stock = cart.find((i) => i.id === item.id)
       ? item.stock
       : item.stock - 1;
     item.quantity = cart.find((i) => i.id === item.id) ? item.quantity + 1 : 1;
     const newCart = cart.filter((i) => i.id !== item.id);
+    localStorage.setItem("cart", JSON.stringify([...newCart, item]));
     setCart([...newCart, item]);
     toast.success("Producto agregado al carrito.");
   };
@@ -27,16 +35,19 @@ const CartProvider = ({ children }) => {
         }
         return item;
       });
+      localStorage.setItem("cart", JSON.stringify(newCart));
       setCart(newCart);
       toast.warning("Producto eliminado del carrito.");
     } else if (cart.find((item) => item.id === id).quantity === 1) {
       const newCart = cart.filter((item) => item.id !== id);
+      localStorage.setItem("cart", JSON.stringify(newCart));
       setCart(newCart);
       toast.warning("Producto eliminado del carrito.");
     }
   };
 
   const clearCart = () => {
+    localStorage.removeItem("cart");
     setCart([]);
     toast.info("Carrito vaciado.");
   };
