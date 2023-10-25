@@ -12,7 +12,7 @@ const Products = () => {
       </header>
       <ProductsForm />
       <ProductsList />
-      <ToastContainer />
+      <ToastContainer autoClose={800}/>
     </main>
   );
 };
