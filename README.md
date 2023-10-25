@@ -1,6 +1,6 @@
 # Bootcamp Full Stack Engineer > educaciónIT
 
-## BC_Desafio12_Guillermo-Vicente > CRUD en Javascript
+## BC_Desafio15_Guillermo-Vicente > CRUD en React - Inventario de productos
 
 ### Author
 
