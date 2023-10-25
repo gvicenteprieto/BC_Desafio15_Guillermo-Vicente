@@ -1,13 +1,24 @@
-import CartButton from "../Cart/CartButton"
+import CartButton from "../Cart/CartButton";
+
+import { useContext } from "react";
+import { CartContext } from "../../Context/CartContext";
 
 const Navbar = () => {
+  const { totalItems } = useContext(CartContext);
+
   return (
     <nav className="Navbar">
-    <h2>Desafío 15</h2>
-    <h3>Aplicación de Productos</h3>
-    {/* <CartButton className="CartButton"/> */}
-  </nav>
-  )
-}
+      <h2>Desafío 15</h2>
+      <h3>Aplicación de Productos</h3>
+      <div className="cart-counter">
 
-export default Navbar
+        <CartButton />
+        <div className="cart-counter-number">
+          <p>{totalItems()}</p>
+        </div>
+      </div>
+    </nav>
+  );
+};
+
+export default Navbar;

@@ -53,9 +53,9 @@ const ProductsList = () => {
                     <h3>Tabla de Productos, por orden alfabético</h3>
                     <div className="ProductsTable">
                       <ProductsTable
-                        products={products}
-                        deleteProduct={deleteProduct}
-                        setUpdateProduct={setUpdateProduct}
+                        // products={products}
+                        // deleteProduct={deleteProduct}
+                        // setUpdateProduct={setUpdateProduct}
                       />
                     </div>
                   </>
@@ -69,8 +69,8 @@ const ProductsList = () => {
                         <ProductsCard
                           key={product.name}
                           product={product}
-                          deleteProduct={deleteProduct}
-                          setUpdateProduct={setUpdateProduct}
+                          // deleteProduct={deleteProduct}
+                          // setUpdateProduct={setUpdateProduct}
                         />
                       ))}
                     </div>

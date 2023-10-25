@@ -109,7 +109,6 @@ const ProductProvider = ({ children }) => {
                 addProduct,
                 deleteProduct,
                 editProduct,
-                updateProduct,
                 setUpdateProduct,
                 setErrorLoad,
             }}

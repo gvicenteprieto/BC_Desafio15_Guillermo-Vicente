@@ -1,4 +1,14 @@
-const ProductsTableRows = ({ products, deleteProduct, setUpdateProduct }) => {
+import { FaTrash } from "react-icons/fa6";
+import { FaEdit } from "react-icons/fa";
+import { FaCartShopping } from "react-icons/fa6";
+import { useContext } from "react";
+import { ProductContext } from "../../../Context/ProductContext";
+import { CartContext } from "../../../Context/CartContext";
+
+const ProductsTableRows = () => {
+  const { products, deleteProduct, setUpdateProduct } =
+    useContext(ProductContext);
+    const { addToCart } = useContext(CartContext);
   return (
     <>
       {products.map((product) => (
@@ -12,14 +22,18 @@ const ProductsTableRows = ({ products, deleteProduct, setUpdateProduct }) => {
                 className="delete-button"
                 onClick={() => deleteProduct(product.name)}
               >
-                Eliminar
+                <FaTrash />
+              </button>
+
+              <button>
+                <FaCartShopping onClick={() => addToCart(product)} />
               </button>
 
               <button
                 className="edit-button"
                 onClick={() => setUpdateProduct(product)}
               >
-                Actualizar
+                <FaEdit />
               </button>
             </div>
           </td>

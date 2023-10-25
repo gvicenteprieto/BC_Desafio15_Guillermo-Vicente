@@ -1,5 +1,11 @@
 import ProductsTableBody from "./ProductsTableBody";
-const ProductsTable = ({ products, deleteProduct, setUpdateProduct }) => {
+import { useContext } from "react";
+import { ProductContext } from "../../../Context/ProductContext";
+
+const ProductsTable = () => {
+
+  const { products, deleteProduct, setUpdateProduct } = useContext(ProductContext);
+
   return (
     <table>
       <thead>
@@ -11,11 +17,7 @@ const ProductsTable = ({ products, deleteProduct, setUpdateProduct }) => {
         </tr>
       </thead>
       <tbody>
-        <ProductsTableBody
-          products={products}
-          deleteProduct={deleteProduct}
-          setUpdateProduct={setUpdateProduct}
-        />
+        <ProductsTableBody />
       </tbody>
     </table>
   );

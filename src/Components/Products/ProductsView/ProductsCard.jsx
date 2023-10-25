@@ -1,6 +1,16 @@
-const ProductsCard = ({ product, deleteProduct, setUpdateProduct }) => {
+import { FaTrash, FaCartShopping } from "react-icons/fa6";
+import { FaEdit } from "react-icons/fa";
+import { useContext } from "react";
+import { ProductContext } from "../../../Context/ProductContext";
+import { CartContext } from "../../../Context/CartContext";
+
+const ProductsCard = ({ product }) => {
+  
+  const { deleteProduct, setUpdateProduct } = useContext(ProductContext);
+  const { addToCart } = useContext(CartContext);
+
   return (
-    <div className="Product" >
+    <div className="Product">
       <h4>{product.name}</h4>
       <p>{product.description}</p>
       <p>$ {product.price}</p>
@@ -9,14 +19,18 @@ const ProductsCard = ({ product, deleteProduct, setUpdateProduct }) => {
           className="delete-button"
           onClick={() => deleteProduct(product.name)}
         >
-          Eliminar
+          <FaTrash />
+        </button>
+
+        <button>
+          <FaCartShopping onClick={() => addToCart(product)} />
         </button>
 
         <button
           className="edit-button"
           onClick={() => setUpdateProduct(product)}
         >
-          Actualizar
+          <FaEdit />
         </button>
       </div>
     </div>
